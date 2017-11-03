@@ -1,0 +1,15 @@
+
+public class Tanque {
+	protected String id;
+	protected double altura;
+	protected String fabrirV;
+	protected String fcerrarV;
+	
+	public Tanque() {
+		id = "";
+		altura = 0;
+		fabrirV = "";
+		fcerrarV = "";
+		
+	}
+}

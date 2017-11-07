@@ -4,6 +4,7 @@ public class Tanque {
 	private Valvula valvula[];
 	protected String id;
 	protected double altura;
+	protected double gasto;
 	//protected String fabrirV;
 	//protected String fcerrarV;
 	
@@ -69,11 +70,9 @@ public class Tanque {
 	 * @param gasto
 	 * @return
 	 */
-	public double gasto(double volN, double gasto) {
-		while(volN>0) {
-			
-		}
-		return volN-gasto;
+	public double gasto( double volumen, double gasto) {
+		double nVol=volumen-gasto;
+		return nVol;
 	}
 	/**
 	 * @return
@@ -84,8 +83,16 @@ public class Tanque {
 	/**
 	 * @return
 	 */
-	public String advertencia() {
-		return "";
+	public String advertencia(double volumen,double gasto) {
+		String add ="";
+		double gas = gasto(volumen, gasto);
+		//System.out.println(gas+gasto+" lo que queda de volumen menos lo quitado");
+		double lim=Volumen()*0.25;
+		//System.out.println(lim+" el 25% del volumen");
+		if(gas+gasto<lim) {
+			 add= "Advertencia el tanque posee menos del 25%";
+		}
+		return add;
 	}
 	/**
 	 * @return

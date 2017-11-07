@@ -38,6 +38,7 @@ public class GUI {
 	private JButton btnVerificar;
 	private JLabel lblAguaDisponible;
 	private JLabel lblAgua;
+	private JLabel lblAd;
 	private JLabel lblCantidadDeAgua;
 	private JTextField tfAgua;
 	private JButton btnLiberarValvula;
@@ -79,7 +80,7 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1064, 524);
+		frame.setBounds(100, 100, 1285, 524);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		MiListener oyente = new MiListener();
@@ -253,8 +254,14 @@ public class GUI {
 		btnMostrarTanques.addActionListener(oyente);
 		
 		lbRespuesta = new JLabel("");
-		lbRespuesta.setBounds(10, 399, 994, 62);
+		lbRespuesta.setBounds(10, 399, 1236, 62);
 		frame.getContentPane().add(lbRespuesta);
+		
+		lblAd = new JLabel("");
+		lblAd.setForeground(Color.RED);
+		lblAd.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblAd.setBounds(476, 338, 421, 35);
+		frame.getContentPane().add(lblAd);
 		btnLiberarValvula.addActionListener(oyente);
 	}
 	private class MiListener implements ActionListener{
@@ -294,19 +301,24 @@ public class GUI {
 			if(e.getSource()==btnVerificar) {
 				
 				System.out.println(cbAgregados.getSelectedItem());
-				lblAgua.setText(("La capacidad es "+String.valueOf(gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).Volumen()))+" m^3");
+				lblAgua.setText((String.valueOf(gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).Volumen())));
 			}
 			if(e.getSource()==btnLiberarValvula) {
 			//	System.out.println(gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).Volumen());
-				lblAgua.setText("La capacidad es "+String.valueOf(gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).gasto(Double.parseDouble(tfAgua.getText()))));
-				//System.out.println(gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).gasto(Double.parseDouble(tfAgua.getText())));
+				//lblAgua.setText("La capacidad es "+String.valueOf(gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).gasto(gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).Volumen(),Double.parseDouble(tfAgua.getText()))));
+				lblAgua.setText(String.valueOf(gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).gasto(Double.parseDouble(lblAgua.getText()),Double.parseDouble(tfAgua.getText()))));
+				lblAd.setText(gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).advertencia(Double.parseDouble(lblAgua.getText()),Double.parseDouble(tfAgua.getText())));
 				
+				
+				//System.out.println(gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).gasto(Double.parseDouble(tfAgua.getText())));
 				//Tanque prueba = new Tanque();
 				//System.out.println(prueba.gasto(Double.parseDouble(tfAgua.getText())));
 			}
 			if(e.getSource()==btnMostrarTanques) { 
 				
 				lbRespuesta.setText(gestAcue.toString());
+				//gestAcue.getTanques().get(cbAgregados.getSelectedIndex()).advertencia(Double.parseDouble(lblAgua.getText()),Double.parseDouble(tfAgua.getText()));
+				 
 				
 
 			}

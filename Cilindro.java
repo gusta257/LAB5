@@ -5,23 +5,41 @@ public class Cilindro extends Tanque{
 	public Cilindro() {
 		super();
 	}
-	public Cilindro(String id, double altura, String fabrirV, String fcerrarV, double radio) {
-		super( id,  altura,  fabrirV,  fcerrarV);
+	/**
+	 * @param id
+	 * @param altura
+	 * @param radio
+	 */
+	public Cilindro(String id, double altura,  double radio) {
+		super( id,  altura);
 		this.radio=radio;
 	}
+	/**
+	 * @return
+	 */
 	public double getRadio() {
 		return radio;
 	}
+	/**
+	 * @param radio
+	 */
 	public void setRadio(double radio) {
 		this.radio = radio;
 	}
-	public double Volumen() {
-		return super.Volumen()*Math.pow(radio, 2)*Math.PI;
+	/* (non-Javadoc)
+	 * @see Tanque#Volumen()
+	 */
+	public  double Volumen() {
+		return Math.round(super.Volumen()*Math.pow(radio, 2)*Math.PI);
 	}
+	/* (non-Javadoc)
+	 * @see Tanque#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Cilindro [radio=" + radio + "]";
+		return id+  "[Capacidad = "+Volumen() +"m^3]";
 	}
+
 	
 	
 	
